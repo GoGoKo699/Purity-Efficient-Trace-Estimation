@@ -14,7 +14,7 @@ $$
 \Vert A\Vert _{2,\tau}^2=\tau_n(A^\dagger A).
 $$
 
-The norm $\Vert A\Vert $ without a subscript is the operator norm. A Hermitian contraction satisfies $A=A^\dagger$ and $\Vert A\Vert \leq 1$.
+The norm $\Vert A\Vert$ without a subscript is the operator norm. A Hermitian contraction satisfies $A=A^\dagger$ and $\Vert A\Vert \leq 1$.
 
 A **clean qubit** is initialized in $|0\rangle$. A register of **maximally mixed qubits** is initialized in the identity state divided by its dimension. All initially supplied registers are independent. A run with $q$ clean qubits and an $n$-qubit target begins in
 
@@ -122,6 +122,6 @@ If implementing one supplied controlled oracle costs $g_V$ native gates, the phy
 
 ## 5. Output convention and scope
 
-A phase-estimation outcome $y\in\lbrace 0,\ldots,M-1\rbrace $ represents the real number $\cos(2\pi y/M)$. The pair $(y,M)$ is a finite exact description of that number. Numerical evaluation to additional accuracy $\eta_{\mathrm{out}}$ adds at most $\eta_{\mathrm{out}}$ to the stated error and can be performed classically with polynomial cost in $\log M$ and $\log(1/\eta_{\mathrm{out}})$. No pure quantum arithmetic register is needed when the desired output is a classical estimate.
+A phase-estimation outcome $y\in\lbrace 0,\ldots,M-1\rbrace$ represents the real number $\cos(2\pi y/M)$. The pair $(y,M)$ is a finite exact description of that number. Numerical evaluation to additional accuracy $\eta_{\mathrm{out}}$ adds at most $\eta_{\mathrm{out}}$ to the stated error and can be performed classically with polynomial cost in $\log M$ and $\log(1/\eta_{\mathrm{out}})$. No pure quantum arithmetic register is needed when the desired output is a classical estimate.
 
 The main result is a clean-qubit **upper bound** together with optimal dependence of the query count on additive precision. The scalar-phase lower bound in [Trace estimator](trace-estimator.md#8-query-lower-bound) proves only a query lower bound. It places no nontrivial lower bound on the number of clean qubits.

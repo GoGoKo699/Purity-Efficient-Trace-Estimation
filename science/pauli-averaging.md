@@ -55,7 +55,7 @@ $$
 \leq2^{-s}.
 $$
 
-**Proof.** For Hermitian Pauli strings $G,P$, let $\chi_G(P)\in\lbrace +1,-1\rbrace $ satisfy
+**Proof.** For Hermitian Pauli strings $G,P$, let $\chi_G(P)\in\lbrace +1,-1\rbrace$ satisfy
 
 $$
 GPG=\chi_G(P)P.
@@ -99,14 +99,14 @@ The proof does not assume that survival events for different Pauli strings are i
 
 ### Spectral concentration consequence
 
-For a fixed seed, list the eigenvalues of $B_G$ with multiplicity as $\lambda_1(G),\ldots,\lambda_d(G)$. Let $J$ be a uniform random index in $\lbrace 1,\ldots,d\rbrace $, independent of $G$. For any $u>0$,
+For a fixed seed, list the eigenvalues of $B_G$ with multiplicity as $\lambda_1(G),\ldots,\lambda_d(G)$. Let $J$ be a uniform random index in $\lbrace 1,\ldots,d\rbrace$, independent of $G$. For any $u>0$,
 
 $$
 \Pr_{G,J}\bigl[|\lambda_J(G)-t|>u\bigr]
 \leq\frac{2^{-s}}{u^2}.
 $$
 
-This follows because the mean squared deviation of this joint sample is exactly the quantity in the lemma. A rare eigenvalue can remain far from $t$; such an eigenvalue is harmless when its normalized multiplicity is sufficiently small. The lemma does not bound $\Vert B_G-tI\Vert $ independently of dimension.
+This follows because the mean squared deviation of this joint sample is exactly the quantity in the lemma. A rare eigenvalue can remain far from $t$; such an eigenvalue is harmless when its normalized multiplicity is sufficiently small. The lemma does not bound $\Vert B_G-tI\Vert$ independently of dimension.
 
 ## 3. A Hermitian involution from the input unitary
 
@@ -166,7 +166,7 @@ To apply $S_G$, apply $G_1$ controlled by $z_1$, then $G_2$ controlled by $z_2$,
 
 ### Branch phases
 
-An ordered Pauli product may acquire a phase in $\lbrace 1,-1,i,-i\rbrace $. It is incorrect to infer $P_z^\dagger=P_z$ from the Hermiticity of the individual generators. However, arbitrary branch phases are harmless if the implemented SELECT and its matching adjoint are used.
+An ordered Pauli product may acquire a phase in $\lbrace 1,-1,i,-i\rbrace$. It is incorrect to infer $P_z^\dagger=P_z$ from the Hermiticity of the individual generators. However, arbitrary branch phases are harmless if the implemented SELECT and its matching adjoint are used.
 
 More explicitly, replacing $S_G$ by $S'_G=D_LS_G$, for any diagonal unitary $D_L$, leaves the central conjugation unchanged:
 

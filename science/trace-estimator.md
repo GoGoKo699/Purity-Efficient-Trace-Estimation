@@ -42,7 +42,7 @@ The output is represented exactly by a phase outcome $y$ and the formula $\wideh
 3. Form the Hermitian involution $W_G$ with signal block $B_G$ and the walk $Q=RW_G$. The signal embedding and reflection are defined below.
 
 4. Apply standard $M$-point phase estimation of $Q$: Hadamards on the phase register, powers $Q^{2^j}$ controlled by its individual bits, and the inverse Fourier transform. Each power is implemented by repeated controlled walk steps.
-5. Measure the phase register, obtaining $y\in\lbrace 0,\ldots,M-1\rbrace $, and return $\cos(2\pi y/M)$.
+5. Measure the phase register, obtaining $y\in\lbrace 0,\ldots,M-1\rbrace$, and return $\cos(2\pi y/M)$.
 
 Here the embedding $\mathcal J|\psi\rangle=|0^b\rangle|\psi\rangle$ defines
 

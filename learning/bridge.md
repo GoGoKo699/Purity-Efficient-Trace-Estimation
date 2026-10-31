@@ -314,7 +314,7 @@ Either outcome returns the exact trace. This is a conditional example with the s
 
 ### All random seeds and the theorem's parameters
 
-For one uniformly random generator, $X$ and $Y$ kill the $Z$ coefficient, while $I$ and $Z$ preserve it. For $s$ generators, the coefficient survives exactly when every generator lies in $\lbrace I,Z\rbrace $. Therefore
+For one uniformly random generator, $X$ and $Y$ kill the $Z$ coefficient, while $I$ and $Z$ preserve it. For $s$ generators, the coefficient survives exactly when every generator lies in $\lbrace I,Z\rbrace$. Therefore
 
 $$
 B_G=\begin{cases}

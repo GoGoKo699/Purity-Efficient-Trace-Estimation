@@ -48,7 +48,7 @@ $$
 |\tau_n(\widehat A)-\tau_n(A)|\le\epsilon_{\rm BE}.
 $$
 
-The contraction bound follows because $C$ is a compression of a unitary. The error bound follows by taking the Hermitian part of $C-A$; the normalized trace bound follows from $|\mathrm{Tr}X|\le2^n\Vert X\Vert $.
+The contraction bound follows because $C$ is a compression of a unitary. The error bound follows by taking the Hermitian part of $C-A$; the normalized trace bound follows from $|\mathrm{Tr}X|\le2^n\Vert X\Vert$.
 
 To implement (2), introduce a signal qubit $b$ and form
 
@@ -75,7 +75,7 @@ $$
 $$
 
 the same construction estimates $\tau_n(A)$ with error at most
-$\alpha\eta+\epsilon_{\rm BE}$, by multiplying an $\eta$-accurate estimate of $\tau_n(\widehat A)$ by $\alpha$. Its query count is $O(1/\eta)$ for $\eta\le1/4$. Choosing $\eta=\min\lbrace 1/4,(\epsilon-\epsilon_{\rm BE})/\alpha\rbrace $ gives $O(\max\lbrace 1,\alpha/(\epsilon-\epsilon_{\rm BE})\rbrace )$ queries for desired final error $\epsilon>\epsilon_{\rm BE}$. The initialization and workspace required to realize the supplied encoding remain part of the resource budget.
+$\alpha\eta+\epsilon_{\rm BE}$, by multiplying an $\eta$-accurate estimate of $\tau_n(\widehat A)$ by $\alpha$. Its query count is $O(1/\eta)$ for $\eta\le1/4$. Choosing $\eta=\min\lbrace 1/4,(\epsilon-\epsilon_{\rm BE})/\alpha\rbrace$ gives $O(\max\lbrace 1,\alpha/(\epsilon-\epsilon_{\rm BE})\rbrace )$ queries for desired final error $\epsilon>\epsilon_{\rm BE}$. The initialization and workspace required to realize the supplied encoding remain part of the resource budget.
 
 ## 2. Hybrid bound for an imperfect execution
 
