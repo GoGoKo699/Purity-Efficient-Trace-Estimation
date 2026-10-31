@@ -1,0 +1,154 @@
+{
+  "status": "pass",
+  "seed": 20261031,
+  "scope": "Finite numerical diagnostics; analytical proofs and literature novelty are separate.",
+  "environment": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "script_sha256": "f3210f70d0b80d60c3c470e67e3a2162e123e0d50c382306c49ff41437154358",
+  "ensemble_identity": [
+    {
+      "n": 1,
+      "s": 1,
+      "seeds_enumerated": 4,
+      "observed_variance": 0.07246251816728802,
+      "predicted_variance": 0.07246251816728802,
+      "absolute_error": 0.0
+    },
+    {
+      "n": 1,
+      "s": 2,
+      "seeds_enumerated": 16,
+      "observed_variance": 0.055799655521200156,
+      "predicted_variance": 0.055799655521200156,
+      "absolute_error": 0.0
+    },
+    {
+      "n": 1,
+      "s": 3,
+      "seeds_enumerated": 64,
+      "observed_variance": 0.05908080072656809,
+      "predicted_variance": 0.059080800726568086,
+      "absolute_error": 6.938893903907228e-18
+    },
+    {
+      "n": 2,
+      "s": 1,
+      "seeds_enumerated": 16,
+      "observed_variance": 0.1483592947777838,
+      "predicted_variance": 0.1483592947777838,
+      "absolute_error": 0.0
+    },
+    {
+      "n": 2,
+      "s": 2,
+      "seeds_enumerated": 256,
+      "observed_variance": 0.14488382254584978,
+      "predicted_variance": 0.14488382254584975,
+      "absolute_error": 2.7755575615628914e-17
+    }
+  ],
+  "coherent_walk": [
+    {
+      "case": "generic_unitary",
+      "target_dimension": 4,
+      "generators": 3,
+      "full_walk_dimension": 64,
+      "residuals": {
+        "signal_block": 2.1605800271712304e-16,
+        "hermitian_involution": 1.2998125075242003e-14,
+        "walk_unitarity": 1.29600999430783e-14,
+        "schur_off_diagonal": 6.782488977890966e-15,
+        "weight_normalization": 2.220446049250313e-16,
+        "trace_mean": 1.3877787807814457e-17,
+        "spectral_variance": 1.3010426069826053e-17,
+        "branch_phase_invariance": 1.3831523680328601e-15
+      }
+    },
+    {
+      "case": "positive_endpoint",
+      "target_dimension": 4,
+      "generators": 3,
+      "full_walk_dimension": 64,
+      "residuals": {
+        "signal_block": 6.661338147750939e-16,
+        "hermitian_involution": 5.342930282877119e-15,
+        "walk_unitarity": 5.342930282877119e-15,
+        "schur_off_diagonal": 3.3083688782751765e-15,
+        "weight_normalization": 2.220446049250313e-16,
+        "trace_mean": 8.881784197001252e-16,
+        "spectral_variance": 6.395855767514231e-31,
+        "branch_phase_invariance": 6.080941944488118e-16
+      }
+    },
+    {
+      "case": "negative_endpoint",
+      "target_dimension": 4,
+      "generators": 3,
+      "full_walk_dimension": 64,
+      "residuals": {
+        "signal_block": 6.661338147750939e-16,
+        "hermitian_involution": 5.342930282877119e-15,
+        "walk_unitarity": 5.342930282877119e-15,
+        "schur_off_diagonal": 3.3139526987680407e-15,
+        "weight_normalization": 2.220446049250313e-16,
+        "trace_mean": 8.881784197001252e-16,
+        "spectral_variance": 6.3149125245523e-31,
+        "branch_phase_invariance": 6.080941944488118e-16
+      }
+    },
+    {
+      "case": "scalar_complex_phase",
+      "target_dimension": 4,
+      "generators": 3,
+      "full_walk_dimension": 64,
+      "residuals": {
+        "signal_block": 1.7763572296530294e-15,
+        "hermitian_involution": 1.421728650704304e-14,
+        "walk_unitarity": 1.421729306523782e-14,
+        "schur_off_diagonal": 4.1837153262354604e-15,
+        "weight_normalization": 4.440892098500626e-16,
+        "trace_mean": 3.3306690738754696e-16,
+        "spectral_variance": 1.3543922072761085e-30,
+        "branch_phase_invariance": 8.308148362110449e-16
+      }
+    }
+  ],
+  "phase_estimation": {
+    "clock_dimension": 128,
+    "phases_checked": 4097,
+    "minimum_two_bin_mass": 0.8106101861817534,
+    "analytic_lower_bound": 0.8105694691387022,
+    "maximum_normalization_error": 1.2656542480726785e-14
+  },
+  "acceptance_reductions": [
+    {
+      "total_qubits": 4,
+      "initial_clean_qubits": 1,
+      "acceptance": 0.5510109577111697,
+      "maximum_identity_error": 2.7755575615628914e-17
+    },
+    {
+      "total_qubits": 4,
+      "initial_clean_qubits": 2,
+      "acceptance": 0.5313426724880533,
+      "maximum_identity_error": 2.0816681711721685e-16
+    },
+    {
+      "total_qubits": 4,
+      "initial_clean_qubits": 3,
+      "acceptance": 0.6485437682250192,
+      "maximum_identity_error": 3.885780586188048e-16
+    }
+  ],
+  "boundaries": {
+    "bad_seed_eigenvalues": [
+      -1.0,
+      1.0
+    ],
+    "bad_seed_trace": 0.0,
+    "uncontrolled_channel_difference": 0.0,
+    "controlled_unitary_difference": 2.0
+  }
+}
