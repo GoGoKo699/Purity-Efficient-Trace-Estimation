@@ -6,10 +6,10 @@ The input and gate conventions are in [Model](model.md). The conversion of this 
 
 ## 1. Pauli expansion and random generators
 
-Let $A=A^\dagger$ act on $n$ qubits, with $\|A\|\leq1$, and put $t=\tau_n(A)$. The Hermitian Pauli strings
+Let $A=A^\dagger$ act on $n$ qubits, with $\Vert A\Vert \leq1$, and put $t=\tau_n(A)$. The Hermitian Pauli strings
 
 $$
-\mathcal P_n=\{I,X,Y,Z\}^{\otimes n}
+\mathcal P_n=\lbrace I,X,Y,Z\rbrace ^{\otimes n}
 $$
 
 are orthonormal for the normalized trace inner product. Thus
@@ -23,7 +23,7 @@ a_P=\tau_n(PA)\in\mathbb R,
 \qquad a_I=t.
 $$
 
-Choose $G_1,\ldots,G_s$ independently and uniformly from $\mathcal P_n$. For $z=(z_1,\ldots,z_s)\in\{0,1\}^s$, define the ordered product
+Choose $G_1,\ldots,G_s$ independently and uniformly from $\mathcal P_n$. For $z=(z_1,\ldots,z_s)\in\lbrace 0,1\rbrace ^s$, define the ordered product
 
 $$
 P_z=G_s^{z_s}\cdots G_1^{z_1}
@@ -32,7 +32,7 @@ $$
 and the averaged operator
 
 $$
-B_G=2^{-s}\sum_{z\in\{0,1\}^s}P_z^\dagger A P_z.
+B_G=2^{-s}\sum_{z\in\lbrace 0,1\rbrace ^s}P_z^\dagger A P_z.
 $$
 
 The product is unitary but need not be Hermitian. This distinction matters for implementing its inverse. Since $B_G$ is an average of unitary conjugations of $A$, it is a Hermitian contraction and
@@ -50,12 +50,12 @@ Pauli diagonalization of random conjugations is a standard tool in approximate r
 **Lemma (averaging identity).** For every fixed Hermitian contraction $A$ and every integer $s\geq0$,
 
 $$
-\mathbb E_G\,\|B_G-tI\|_{2,\tau}^2
+\mathbb E_G \Vert B_G-tI\Vert _{2,\tau}^2
 =2^{-s}\bigl(\tau_n(A^2)-t^2\bigr)
 \leq2^{-s}.
 $$
 
-**Proof.** For Hermitian Pauli strings $G,P$, let $\chi_G(P)\in\{+1,-1\}$ satisfy
+**Proof.** For Hermitian Pauli strings $G,P$, let $\chi_G(P)\in\lbrace +1,-1\rbrace $ satisfy
 
 $$
 GPG=\chi_G(P)P.
@@ -71,7 +71,7 @@ $$
 Consequently,
 
 $$
-B_G=\sum_{P\in\mathcal P_n}a_P\,\xi_G(P)P,
+B_G=\sum_{P\in\mathcal P_n}a_P \xi_G(P)P,
 \qquad
 \xi_G(P)=\prod_{j=1}^s\frac{1+\chi_{G_j}(P)}{2}.
 $$
@@ -86,8 +86,8 @@ Orthogonality of the Pauli basis now yields
 
 $$
 \begin{aligned}
-\mathbb E_G\,\|B_G-tI\|_{2,\tau}^2
-&=\sum_{P\neq I}a_P^2\,\mathbb E_G\xi_G(P)^2\\
+\mathbb E_G \Vert B_G-tI\Vert _{2,\tau}^2
+&=\sum_{P\neq I}a_P^2 \mathbb E_G\xi_G(P)^2\\
 &=2^{-s}\sum_{P\neq I}a_P^2\\
 &=2^{-s}\bigl(\tau_n(A^2)-t^2\bigr).
 \end{aligned}
@@ -99,14 +99,14 @@ The proof does not assume that survival events for different Pauli strings are i
 
 ### Spectral concentration consequence
 
-For a fixed seed, list the eigenvalues of $B_G$ with multiplicity as $\lambda_1(G),\ldots,\lambda_d(G)$. Let $J$ be a uniform random index in $\{1,\ldots,d\}$, independent of $G$. For any $u>0$,
+For a fixed seed, list the eigenvalues of $B_G$ with multiplicity as $\lambda_1(G),\ldots,\lambda_d(G)$. Let $J$ be a uniform random index in $\lbrace 1,\ldots,d\rbrace $, independent of $G$. For any $u>0$,
 
 $$
 \Pr_{G,J}\bigl[|\lambda_J(G)-t|>u\bigr]
 \leq\frac{2^{-s}}{u^2}.
 $$
 
-This follows because the mean squared deviation of this joint sample is exactly the quantity in the lemma. A rare eigenvalue can remain far from $t$; such an eigenvalue is harmless when its normalized multiplicity is sufficiently small. The lemma does not bound $\|B_G-tI\|$ independently of dimension.
+This follows because the mean squared deviation of this joint sample is exactly the quantity in the lemma. A rare eigenvalue can remain far from $t$; such an eigenvalue is harmless when its normalized multiplicity is sufficiently small. The lemma does not bound $\Vert B_G-tI\Vert $ independently of dimension.
 
 ## 3. A Hermitian involution from the input unitary
 
@@ -118,7 +118,7 @@ W(V)=
 0&V^\dagger\\
 V&0
 \end{pmatrix}_h
-=\operatorname{diag}(V^\dagger,V)_h(X_h\otimes I).
+=\mathrm{diag}(V^\dagger,V)_h(X_h\otimes I).
 $$
 
 Then $W(V)^\dagger=W(V)$ and $W(V)^2=I$. Its compression to $|+\rangle_h|0^a\rangle_E$ is
@@ -127,7 +127,7 @@ $$
 (\langle+|_h\langle0^a|_E\otimes I)
 W(V)
 (|+\rangle_h|0^a\rangle_E\otimes I)
-=\operatorname{Re} C=A.
+=\mathrm{Re} C=A.
 $$
 
 This construction works whether or not $C$ is Hermitian. The input unitary need not already be an involution. One invocation of $W(V)$ can be implemented with one controlled $V$, one controlled $V^\dagger$, and known gates.
@@ -137,7 +137,7 @@ This construction works whether or not $C$ is Hermitian. The input unitary need 
 Let $L$ be an $s$-qubit label register. Define
 
 $$
-S_G=\sum_{z\in\{0,1\}^s}|z\rangle\langle z|_L\otimes P_z,
+S_G=\sum_{z\in\lbrace 0,1\rbrace ^s}|z\rangle\langle z|_L\otimes P_z,
 $$
 
 with identities on $h$ and $E$, and let
@@ -166,7 +166,7 @@ To apply $S_G$, apply $G_1$ controlled by $z_1$, then $G_2$ controlled by $z_2$,
 
 ### Branch phases
 
-An ordered Pauli product may acquire a phase in $\{1,-1,i,-i\}$. It is incorrect to infer $P_z^\dagger=P_z$ from the Hermiticity of the individual generators. However, arbitrary branch phases are harmless if the implemented SELECT and its matching adjoint are used.
+An ordered Pauli product may acquire a phase in $\lbrace 1,-1,i,-i\rbrace $. It is incorrect to infer $P_z^\dagger=P_z$ from the Hermiticity of the individual generators. However, arbitrary branch phases are harmless if the implemented SELECT and its matching adjoint are used.
 
 More explicitly, replacing $S_G$ by $S'_G=D_LS_G$, for any diagonal unitary $D_L$, leaves the central conjugation unchanged:
 
@@ -183,7 +183,7 @@ Let $c$ be a phase-estimation control bit. The identity
 
 $$
 \mathrm C_c(W_G)
-=T_G^\dagger\,\mathrm C_c(I_L\otimes W(V))\,T_G
+=T_G^\dagger \mathrm C_c(I_L\otimes W(V)) T_G
 $$
 
 allows $T_G$ and its inverse to be applied without the extra control $c$. When $c=0$, they cancel. Thus the Pauli SELECT remains a sequence of singly controlled Clifford gates even inside a controlled walk step.

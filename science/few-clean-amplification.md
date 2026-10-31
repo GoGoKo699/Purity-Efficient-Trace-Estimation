@@ -8,30 +8,33 @@ The threshold assumptions are part of the theorem. The separating acceptance thr
 
 Let $x$ have length $m$. Let $V_x$ be a polynomial-time uniformly generated unitary circuit of size $L(m)$ on $w(m)$ qubits. Its input is
 
+**Equation (1).**
+
 $$
 \rho_{\rm in}
 =|0^k\rangle\langle0^k|\otimes I_D/d,
 \qquad
 n=w-k,\quad d=2^n,
-\tag{1}
 $$
 
 where $k(m)=O(\log m)$ and $w,L$ are polynomially bounded. The original circuit measures one designated output qubit at the end; take outcome zero to mean acceptance. Let $p_x$ be that acceptance probability.
 
 Assume supplied or polynomial-time computable thresholds $c(m),s(m)$, and an efficiently known positive lower bound $\Delta(m)$, satisfy
 
+**Equation (2).**
+
 $$
-0\le s<c\le1,\qquad c-s\ge\Delta\ge1/\operatorname{poly}(m),
-\tag{2}
+0\le s\lt c\le1,\qquad c-s\ge\Delta\ge1/\mathrm{poly}(m),
 $$
 
 with the promise
+
+**Equation (3).**
 
 $$
 x\in A_{\rm yes}\Longrightarrow p_x\ge c,
 \qquad
 x\in A_{\rm no}\Longrightarrow p_x\le s.
-\tag{3}
 $$
 
 Polynomial-time computability here includes computing the thresholds to the $O(\Delta)$ accuracy used below. Rational thresholds of polynomial bit length are a sufficient special case.
@@ -45,17 +48,18 @@ $$
 initially clean qubits and
 
 $$
-O\!\left((w-k)\log(2/\Delta)+1\right)
+O \left((w-k)\log(2/\Delta)+1\right)
 $$
 
 initially mixed qubits. Before finite-gate synthesis, it makes $O(1/\Delta)$ uses of $V_x$ and $V_x^\dagger$ in total and has gate count
 
+**Equation (4).**
+
 $$
-O\!\left(
+O \left(
 \frac{L+n\log(2/\Delta)+k+\log(2/\Delta)}{\Delta}
 +\log^2(2/\Delta)
 \right).
-\tag{4}
 $$
 
 A fixed finite gate set adds a polynomial or polylogarithmic compilation overhead as detailed in [robustness](robustness.md); all resources remain polynomial in $m$. The clean count includes the original clean signal register, averaging labels, the phase-estimation clock, the final output, and reversible-comparison workspace. It does not count a purified copy of the mixed target.
@@ -66,51 +70,55 @@ The inverse in this statement is available because $V_x$ is a supplied, known un
 
 Let $Q_o=|0\rangle\langle0|_o\otimes I$ be the acceptance projector and put
 
+**Equation (5).**
+
 $$
 Z_o=2Q_o-I,\qquad H_x=V_x^\dagger Z_oV_x.
-\tag{5}
 $$
 
 Then $H_x$ is an exact Hermitian involution. Define
 
+**Equation (6).**
+
 $$
 J_k|\psi\rangle=|0^k\rangle|\psi\rangle,
 \qquad A_x=J_k^\dagger H_xJ_k.
-\tag{6}
 $$
 
 The matrix $A_x$ is a Hermitian contraction on the $n$ mixed qubits and has the exact trace identity
 
+**Equation (7).**
+
 $$
 \tau_n(A_x)=2p_x-1.
-\tag{7}
 $$
 
 Indeed,
 
 $$
 \tau_n(A_x)
-=\operatorname{Tr}\!\left[Z_oV_x\rho_{\rm in}V_x^\dagger\right]
-=2\operatorname{Tr}\!\left[Q_oV_x\rho_{\rm in}V_x^\dagger\right]-1.
+=\mathrm{Tr} \left[Z_oV_x\rho_{\rm in}V_x^\dagger\right]
+=2\mathrm{Tr} \left[Q_oV_x\rho_{\rm in}V_x^\dagger\right]-1.
 $$
 
 Thus the original $k$ clean input qubits are exactly the signal register of a block encoding. They need not be purified again or replaced by a pure copy of the $n$-qubit target.
 
 The [Pauli averaging construction](pauli-averaging.md) acts only on the $n$ mixed target qubits. With a label register of size $s_{\rm P}$, it turns (5) into a Hermitian involution whose all-zero $(k+s_{\rm P})$-qubit signal block is
 
+**Equation (8).**
+
 $$
-B_G=2^{-s_{\rm P}}\sum_{z\in\{0,1\}^{s_{\rm P}}}
+B_G=2^{-s_{\rm P}}\sum_{z\in\lbrace 0,1\rbrace ^{s_{\rm P}}}
 P_z^\dagger A_xP_z.
-\tag{8}
 $$
 
 There is no need for the extra Hermitianization qubit used for a general non-Hermitian block encoding: $H_x$ is already Hermitian and unitary.
 
 ### Controlled calls and original-circuit cost
 
-To apply controlled-$H_x$, apply $V_x$, then controlled-$Z_o$, then $V_x^\dagger$. On the inactive control branch the two circuit calls cancel. This construction uses one forward and one inverse call and does not require a separately supplied controlled-$V_x$ oracle.
+To apply controlled $H_x$, apply $V_x$, then controlled $Z_o$, then $V_x^\dagger$. On the inactive control branch the two circuit calls cancel. This construction uses one forward and one inverse call and does not require a separately supplied controlled $V_x$ oracle.
 
-Likewise, the known conjugating SELECT and label-basis-change gates need not receive the outer phase-estimation control. Conjugate controlled-$H_x$ by those known gates, and add the controlled reflection about the all-zero signal subspace. A clean comparison-work bit, not yet used for the final comparison, can supply the returned workspace for the linear-size reflection construction [BBC+95, Corollary 7.12]. Each controlled walk use then costs one $V_x$, one $V_x^\dagger$, and $O(ns_{\rm P}+k+s_{\rm P}+1)$ known gates. A quadratic-size reflection without that workspace is also a valid, weaker alternative.
+Likewise, the known conjugating SELECT and label-basis-change gates need not receive the outer phase-estimation control. Conjugate controlled $H_x$ by those known gates, and add the controlled reflection about the all-zero signal subspace. A clean comparison-work bit, not yet used for the final comparison, can supply the returned workspace for the linear-size reflection construction [BBC+95, Corollary 7.12]. Each controlled walk use then costs one $V_x$, one $V_x^\dagger$, and $O(ns_{\rm P}+k+s_{\rm P}+1)$ known gates. A quadratic-size reflection without that workspace is also a valid, weaker alternative.
 
 Known circuits are used as unitaries on their entire declared workspace. All qubits that their implementation requires initially pure must already be included in $k$. A description that discards or reinitializes hidden workspace does not satisfy the hypothesis.
 
@@ -118,13 +126,14 @@ Known circuits are used as unitaries on their entire declared workspace. All qub
 
 Use the real trace estimator with
 
+**Equation (9).**
+
 $$
 \eta=\Delta/8,\quad
 s_{\rm P}=\left\lceil\log_2(64/\eta^2)\right\rceil,
 \quad
 M=2^{\lceil\log_2(4\pi/\eta)\rceil},
 \quad r=\log_2M.
-\tag{9}
 $$
 
 The circuit makes $M-1$ controlled walk uses. Its phase clock $Y$ has the associated value
@@ -135,19 +144,21 @@ $$
 
 The [mixed-state spectral-sampling proof](trace-estimator.md) gives
 
+**Equation (10).**
+
 $$
 \Pr\left[|\widehat a(Y)-(2p_x-1)|\le\Delta/8\right]
 \ge p_*:=\frac{15}{2\pi^2}>\frac34.
-\tag{10}
 $$
 
 The probability is over the seed and the final quantum measurement; the seed is internalized in Section 4. No classical repetition is needed to obtain this fixed constant success probability.
 
 The separating trace threshold is
 
+**Equation (11).**
+
 $$
 \theta=c+s-1.
-\tag{11}
 $$
 
 On yes-instances, $2p_x-1\ge\theta+\Delta$; on no-instances, $2p_x-1\le\theta-\Delta$. Therefore an estimate satisfying (10) can be classified correctly using a threshold within $\Delta/8$ of $\theta$. The extra margin will absorb numerical threshold computation and circuit synthesis.
@@ -162,17 +173,19 @@ The product $X^xZ^z$ is a valid representative of a Pauli modulo phase. The aver
 
 For fixed seed $g$, let $C_g$ be the complete estimator circuit, including phase estimation and its final comparison. The single fixed circuit on the seed and computation has the form
 
+**Equation (12).**
+
 $$
 C_{\rm all}=\sum_g|g\rangle\langle g|\otimes C_g.
-\tag{12}
 $$
 
 Consequently, for $N_S=2ns_{\rm P}$,
 
+**Equation (13).**
+
 $$
 C_{\rm all}\left(\frac{I_S}{2^{N_S}}\otimes\rho\right)C_{\rm all}^\dagger
 =2^{-N_S}\sum_g |g\rangle\langle g|\otimes C_g\rho C_g^\dagger.
-\tag{13}
 $$
 
 Measuring the designated output qubit therefore reproduces exactly the success probability averaged over the random seed. The seed need not be measured. Equation (13) also explains why the same seed must be retained through every controlled power in phase estimation: resampling a generator at each walk call would define a different operator.
@@ -200,18 +213,20 @@ $$
 
 A sufficiently accurate classical approximation followed by rounding gives such a $K$ uniformly in polynomial time. Define $t_K=\cos(2\pi K/M)$. Because cosine is 1-Lipschitz and $M\ge32\pi/\Delta$,
 
+**Equation (14).**
+
 $$
 |t_K-\theta|
 \le2\pi/M+\Delta/16
 \le\Delta/8.
-\tag{14}
 $$
 
 The circuit computes the Boolean function
 
+**Equation (15).**
+
 $$
-f_K(y)=\mathbf 1\{y\le K\text{ or }y\ge M-K\}
-\tag{15}
+f_K(y)=\mathbf 1\lbrace y\le K\text{ or }y\ge M-K\rbrace 
 $$
 
 into one initially zero output bit. This is implemented with two reversible comparisons to known binary constants, using $O(r)$ reusable clean carry bits and $O(r^2)$ gates conservatively. The phase register is retained; the comparison work is uncomputed. A final $X$ on the output can convert acceptance value one to the outcome-zero convention in (1)–(3).
@@ -226,9 +241,10 @@ The original known circuit can be inverted by reversing its finite gate sequence
 
 Allocate total operational/synthesis error at most $1/32$ to the complete first-stage circuit. The hybrid theorem in [robustness](robustness.md) then makes its success probability at least
 
+**Equation (16).**
+
 $$
 \frac{15}{2\pi^2}-\frac1{32}>\frac23.
-\tag{16}
 $$
 
 For a known polynomial-size circuit and inverse-polynomial $\Delta$, this accuracy has a uniform polynomial-size compilation. Unitary uncomputation of carry bits and borrowed workspace is allowed: it is part of the reversible circuit, not a fresh initialization or a reset.
@@ -241,20 +257,22 @@ The direct Hermitian-block route avoids attenuating the original acceptance gap.
 
 Let $D=2^w$, $P=|0^k\rangle\langle0^k|\otimes I_d$, and $R=2P-I$. Define the known unitary
 
+**Equation (17).**
+
 $$
 W_x=Z_oV_xRV_x^\dagger.
-\tag{17}
 $$
 
-Because $\operatorname{Tr}Z_o=0$,
+Because $\mathrm{Tr}Z_o=0$,
+
+**Equation (18).**
 
 $$
 \begin{aligned}
 \tau_w(W_x)
-&=\frac{2}{D}\operatorname{Tr}[Z_oV_xPV_x^\dagger]\\
+&=\frac{2}{D}\mathrm{Tr}[Z_oV_xPV_x^\dagger]\\
 &=2^{1-k}(2p_x-1).
 \end{aligned}
-\tag{18}
 $$
 
 The trace in (18) is real. The yes/no gap becomes at least $2^{2-k}\Delta$. A trace estimate of precision $\eta_W=2^{-k}\Delta/8$, together with an adequately rounded threshold, is sufficient for a constant-success decision and always lies within the estimator's precision range.

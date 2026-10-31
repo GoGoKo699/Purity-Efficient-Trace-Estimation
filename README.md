@@ -2,13 +2,13 @@
 
 How much initial purity is needed to estimate the normalized trace of a quantum operation at the optimal query precision?
 
-For a supplied unitary $U$ on $n$ qubits, this repository develops an estimator of $\tau_n(U)=2^{-n}\operatorname{Tr}(U)$ with additive error $\epsilon$, constant success probability, $O(1/\epsilon)$ controlled forward/inverse queries, and $O(\log(1/\epsilon))$ initially clean qubits. The target is initialized maximally mixed, without access to a purification. The clean-qubit count is independent of $n$; the mixed-register width and known-gate cost are counted separately.
+For a supplied unitary $U$ on $n$ qubits, this repository develops an estimator of $\tau_n(U)=2^{-n}\mathrm{Tr}(U)$ with additive error $\epsilon$, constant success probability, $O(1/\epsilon)$ controlled forward/inverse queries, and $O(\log(1/\epsilon))$ initially clean qubits. The target is initialized maximally mixed, without access to a purification. The clean-qubit count is independent of $n$; the mixed-register width and known-gate cost are counted separately.
 
 The mechanism is coherent averaging over products of random Pauli generators. It concentrates the spectrum around the normalized trace in normalized Hilbert–Schmidt mean square. Phase estimation of a qubitized walk then reads a representative eigenvalue from the mixed initialization. The complete circuit uses no intermediate measurement, reset, or postselection.
 
 ## Results and resources
 
-The [main theorem and proof](science/trace-estimator.md) also cover the Hermitian part of a supplied unitary block encoding. For one real estimate of precision $0<\eta\leq1/4$, define
+The [main theorem and proof](science/trace-estimator.md) also cover the Hermitian part of a supplied unitary block encoding. For one real estimate of precision $0\lt \eta\leq1/4$, define
 
 $$
 s=\left\lceil\log_2(64/\eta^2)\right\rceil,\qquad

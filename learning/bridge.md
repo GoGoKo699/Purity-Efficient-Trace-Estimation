@@ -8,7 +8,7 @@ This bridge uses Nielsen and Chuang's *Quantum Computation and Quantum Informati
 
 **Source connection:** density operators and reduced states, §§2.4–2.4.3, pp. 98–108; controlled operations, §4.3, p. 177; measurement, §4.4, p. 185.
 
-Prepare a clean control in $|+\rangle=(|0\rangle+|1\rangle)/\sqrt2$ and an independent target in a density operator $\rho$. Applying controlled-$U$ gives the joint state
+Prepare a clean control in $|+\rangle=(|0\rangle+|1\rangle)/\sqrt2$ and an independent target in a density operator $\rho$. Applying controlled $U$ gives the joint state
 
 $$
 \frac12
@@ -26,25 +26,25 @@ $$
 1&z^*\\
 z&1
 \end{pmatrix},
-\qquad z=\operatorname{Tr}(\rho U).
+\qquad z=\mathrm{Tr}(\rho U).
 $$
 
-Consequently, measuring $X$ on the control has mean $\operatorname{Re}z$, and measuring $Y$ has mean $\operatorname{Im}z$. An $X$ measurement can be implemented by a Hadamard followed by computational-basis measurement. When the target is maximally mixed,
+Consequently, measuring $X$ on the control has mean $\mathrm{Re}z$, and measuring $Y$ has mean $\mathrm{Im}z$. An $X$ measurement can be implemented by a Hadamard followed by computational-basis measurement. When the target is maximally mixed,
 
 $$
 \rho=I/d,\qquad d=2^n,\qquad
-z=\tau_n(U):=\frac{\operatorname{Tr}U}{d}.
+z=\tau_n(U):=\frac{\mathrm{Tr}U}{d}.
 $$
 
 This is the normalized-trace experiment underlying the one-clean-qubit model of [Knill and Laflamme](https://arxiv.org/abs/quant-ph/9802037v1). Independent bounded measurement outcomes give an $O(1/\epsilon^2)$ sampling method at constant confidence. Each repetition must have its own initialized registers, or the hardware must be reinitialized between experiments.
 
-The project replaces those independent samples with a coherent spectral experiment. It retains the same normalized quantity: an additive error $\epsilon$ in $\tau_n(U)$ corresponds to an additive error $d\epsilon$ in the unnormalized trace. A dimension-independent bound for normalized trace is therefore not a dimension-independent bound for estimating $\operatorname{Tr}U$ to fixed absolute accuracy.
+The project replaces those independent samples with a coherent spectral experiment. It retains the same normalized quantity: an additive error $\epsilon$ in $\tau_n(U)$ corresponds to an additive error $d\epsilon$ in the unnormalized trace. A dimension-independent bound for normalized trace is therefore not a dimension-independent bound for estimating $\mathrm{Tr}U$ to fixed absolute accuracy.
 
 ## 2. What initial purity means
 
 **Source connection:** ensembles and reduced density operators, §§2.4.1 and 2.4.3, pp. 99 and 105; Schmidt decomposition and purifications, §2.5, p. 109.
 
-The maximally mixed state has many ensemble descriptions. In particular, for every orthonormal basis $\{|v_j\rangle\}_{j=1}^d$,
+The maximally mixed state has many ensemble descriptions. In particular, for every orthonormal basis $\lbrace |v_j\rangle\rbrace _{j=1}^d$,
 
 $$
 \frac{I}{d}=\frac1d\sum_{j=1}^d|v_j\rangle\langle v_j|.
@@ -78,9 +78,9 @@ with all supplied registers independent. The number $q$ counts **initially** cle
 
 | Familiar source notation or object | Meaning in this project |
 |---|---|
-| Density operator $\rho$ and expectation $\operatorname{Tr}(\rho A)$ | The initial target has $\rho=I/2^n$, so its expectation is $\tau_n(A)$. |
+| Density operator $\rho$ and expectation $\mathrm{Tr}(\rho A)$ | The initial target has $\rho=I/2^n$, so its expectation is $\tau_n(A)$. |
 | Pauli matrices $\sigma_x,\sigma_y,\sigma_z$ | Written $X,Y,Z$; their tensor products form the Hermitian Pauli basis. |
-| Ordinary trace $\operatorname{Tr}A$ | $\tau_n(A)=2^{-n}\operatorname{Tr}A$ includes the normalization. |
+| Ordinary trace $\mathrm{Tr}A$ | $\tau_n(A)=2^{-n}\mathrm{Tr}A$ includes the normalization. |
 | Eigenphase convention $U\lvert u\rangle=e^{2\pi i\varphi}\lvert u\rangle$ | The walk has eigenvalues $e^{i\theta}$, with $\theta=2\pi\varphi$ modulo $2\pi$. |
 | Phase-estimation output bits | An $r$-bit integer $y$, with $M=2^r$, represents angle $2\pi y/M$. |
 | A reflection in a search or counting circuit | Here $R=2\Pi-I$, where $\Pi$ fixes only the clean signal bits and acts as the identity on the whole target. |
@@ -97,15 +97,15 @@ $$
 C=(\langle0^a|_E\otimes I_S)V(|0^a\rangle_E\otimes I_S).
 $$
 
-The surrounding bras and kets mean a matrix compression: retain the rows and columns with signal label zero. Since $V$ preserves norm, $\|C\|\le1$. The construction does not measure the signal bits and postselect that outcome. It uses the complete unitary $V$, including the other blocks.
+The surrounding bras and kets mean a matrix compression: retain the rows and columns with signal label zero. Since $V$ preserves norm, $\Vert C\Vert \le1$. The construction does not measure the signal bits and postselect that outcome. It uses the complete unitary $V$, including the other blocks.
 
 The real estimator concerns
 
 $$
-A=\operatorname{Re}C=\frac{C+C^\dagger}{2}.
+A=\mathrm{Re}C=\frac{C+C^\dagger}{2}.
 $$
 
-For a unitary trace, take $a=0$ and $V=U$, so $\tau_n(A)=\operatorname{Re}\tau_n(U)$. To treat this potentially non-Hermitian $V$, introduce one clean signal qubit $h$ and form
+For a unitary trace, take $a=0$ and $V=U$, so $\tau_n(A)=\mathrm{Re}\tau_n(U)$. To treat this potentially non-Hermitian $V$, introduce one clean signal qubit $h$ and form
 
 $$
 W(V)=
@@ -125,7 +125,7 @@ $$
 
 The state on $h$ is $|+\rangle$, not $|0\rangle$, in this displayed formula. Hadamard conjugation on $h$ converts it to an all-zero signal convention. This distinction fixes the block that the walk will encode. The full construction is [Pauli averaging, §3](../science/pauli-averaging.md#3-a-hermitian-involution-from-the-input-unitary).
 
-The input capabilities are controlled-$V$ and controlled-$V^\dagger$, each charged as one query. An uncontrolled channel $\rho\mapsto V\rho V^\dagger$ cannot determine the global phase of $V$, although that phase changes its complex trace. Hence controlled access with a fixed phase convention is a substantive assumption. Any initially clean workspace needed inside the supplied oracle must also be counted; see [Model, §2](../science/model.md#2-oracle-access).
+The input capabilities are controlled $V$ and controlled $V^\dagger$, each charged as one query. An uncontrolled channel $\rho\mapsto V\rho V^\dagger$ cannot determine the global phase of $V$, although that phase changes its complex trace. Hence controlled access with a fixed phase convention is a substantive assumption. Any initially clean workspace needed inside the supplied oracle must also be counted; see [Model, §2](../science/model.md#2-oracle-access).
 
 ## 4. Coherently averaging the observable
 
@@ -134,7 +134,7 @@ The input capabilities are controlled-$V$ and controlled-$V^\dagger$, each charg
 Expand the Hermitian contraction $A$ in the Pauli basis:
 
 $$
-A=\sum_{P\in\{I,X,Y,Z\}^{\otimes n}}a_PP,
+A=\sum_{P\in\lbrace I,X,Y,Z\rbrace ^{\otimes n}}a_PP,
 \qquad a_P=\tau_n(PA),
 \qquad a_I=t:=\tau_n(A).
 $$
@@ -160,7 +160,7 @@ $$
 Every nonidentity $P$ commutes with exactly half the possible generators. Its coefficient therefore survives all $s$ independent choices with probability $2^{-s}$. Squaring the Pauli coefficients and using orthogonality yields the exact identity
 
 $$
-\mathbb E_G\,\tau_n\bigl((B_G-tI)^2\bigr)
+\mathbb E_G \tau_n\bigl((B_G-tI)^2\bigr)
 =2^{-s}\bigl(\tau_n(A^2)-t^2\bigr)
 \le2^{-s}.
 $$
@@ -232,7 +232,7 @@ $$
 \Pi W_G|\psi_j\rangle=\lambda_j|\psi_j\rangle.
 $$
 
-For $|\lambda_j|<1$, define
+For $|\lambda_j|\lt 1$, define
 
 $$
 |\phi_j\rangle=
@@ -310,11 +310,11 @@ With a two-qubit phase register, $M=4$. These phases are exact grid points, so t
 | $1$ | $1/2$ | $0$ |
 | $3$ | $1/2$ | $0$ |
 
-Either outcome returns the exact trace. This is a conditional example with the specified seed and exact grid phases, not the general accuracy theorem's parameter choice. The generic circuit ledger for it is five initially clean qubits—one Hermitianization bit, one label bit, two clock bits, and one returned temporary bit—plus one initially mixed target qubit. Implementing the three controlled walk steps through the generic oracle construction uses three controlled-$Z$ calls and three controlled-$Z^\dagger$ calls. Knowledge that this particular oracle is $Z$ would permit simplifications, but those are unnecessary for the example.
+Either outcome returns the exact trace. This is a conditional example with the specified seed and exact grid phases, not the general accuracy theorem's parameter choice. The generic circuit ledger for it is five initially clean qubits—one Hermitianization bit, one label bit, two clock bits, and one returned temporary bit—plus one initially mixed target qubit. Implementing the three controlled walk steps through the generic oracle construction uses three controlled $Z$ calls and three controlled $Z^\dagger$ calls. Knowledge that this particular oracle is $Z$ would permit simplifications, but those are unnecessary for the example.
 
 ### All random seeds and the theorem's parameters
 
-For one uniformly random generator, $X$ and $Y$ kill the $Z$ coefficient, while $I$ and $Z$ preserve it. For $s$ generators, the coefficient survives exactly when every generator lies in $\{I,Z\}$. Therefore
+For one uniformly random generator, $X$ and $Y$ kill the $Z$ coefficient, while $I$ and $Z$ preserve it. For $s$ generators, the coefficient survives exactly when every generator lies in $\lbrace I,Z\rbrace $. Therefore
 
 $$
 B_G=\begin{cases}
@@ -335,7 +335,7 @@ The exact count is **18 clean qubits, one mixed target qubit, 63 forward queries
 
 ## 7. Accuracy, confidence, and the resource ledger
 
-For a real estimate with $0<\eta\le1/4$, set
+For a real estimate with $0\lt \eta\le1/4$, set
 
 $$
 s=\left\lceil\log_2\frac{64}{\eta^2}\right\rceil,
@@ -347,7 +347,7 @@ The averaging bound gives
 
 $$
 \Pr_{G,J}(|\lambda_J-t|>\eta/2)
-\le\frac{4\,2^{-s}}{\eta^2}\le\frac1{16}.
+\le\frac{4 2^{-s}}{\eta^2}\le\frac1{16}.
 $$
 
 For every fixed eigenphase $\theta$, $M$-point phase estimation returns a grid angle within circular distance $2\pi/M$ with probability at least $8/\pi^2$. The two adjacent grid outcomes give this constant; see [Brassard et al., Theorem 11](https://arxiv.org/abs/quant-ph/0005055). Because cosine is 1-Lipschitz and $M\ge4\pi/\eta$, the corresponding eigenvalue estimate differs from $\lambda_J$ by at most $\eta/2$.
@@ -370,11 +370,11 @@ Independence between the two success events is unnecessary. The conditional guar
 | Alternative internal seed | $2ns$ additional initially mixed qubits |
 | Controlled forward queries | $M-1$ |
 | Controlled inverse queries | $M-1$ |
-| Total queries | $2(M-1)<16\pi/\eta$ |
+| Total queries | $2(M-1)\lt 16\pi/\eta$ |
 | Known gates | $O((ns+a+s+1)M+r^2)$ |
 | Quantum measurement | Terminal measurement of the $r$ clock bits |
 
-Powers are not free queries: phase estimation uses $1+2+\cdots+2^{r-1}=M-1$ controlled walk steps. A controlled walk uses one supplied controlled-$V$ and one controlled-$V^\dagger$. The known conjugating gates $T_G,T_G^\dagger$ can remain unconditional around the controlled central involution; on the inactive branch they cancel. A returned temporary bit reduces the two-control oracle condition to the supplied singly controlled oracle. It can then be reused for the signal reflection. These details establish the count rather than assuming stronger oracle access; see [the control construction](../science/pauli-averaging.md#5-controlling-the-walk-without-a-stronger-oracle).
+Powers are not free queries: phase estimation uses $1+2+\cdots+2^{r-1}=M-1$ controlled walk steps. A controlled walk uses one supplied controlled $V$ and one controlled $V^\dagger$. The known conjugating gates $T_G,T_G^\dagger$ can remain unconditional around the controlled central involution; on the inactive branch they cancel. A returned temporary bit reduces the two-control oracle condition to the supplied singly controlled oracle. It can then be reused for the signal reflection. These details establish the count rather than assuming stronger oracle access; see [the control construction](../science/pauli-averaging.md#5-controlling-the-walk-without-a-stronger-oracle).
 
 The sign of a controlled reflection also matters. With phase control $c$,
 
@@ -382,13 +382,13 @@ $$
 \mathrm C_c(R)=Z_c\bigl(I-2|1\rangle\langle1|_c\otimes\Pi\bigr).
 $$
 
-Omitting $Z_c$ implements controlled-$(-R)$ and shifts the walk phases by $\pi$. The linear-size reflection construction with one returned clean bit is justified by [Barenco et al., Corollary 7.12](https://arxiv.org/abs/quant-ph/9503016), as explained in the [resource proof](../science/trace-estimator.md#5-resource-proof).
+Omitting $Z_c$ implements controlled $(-R)$ and shifts the walk phases by $\pi$. The linear-size reflection construction with one returned clean bit is justified by [Barenco et al., Corollary 7.12](https://arxiv.org/abs/quant-ph/9503016), as explained in the [resource proof](../science/trace-estimator.md#5-resource-proof).
 
 The gate convention is arbitrary one-qubit unitaries and CNOTs, corresponding to the elementary circuit setting of Nielsen–Chuang §4.5.2, p. 191. A fixed finite gate set requires synthesis precision and its additional cost (§4.5.3, p. 194). The finite pair $(y,M)$ exactly describes the mathematical output $\cos(2\pi y/M)$; numerical evaluation can take place classically. No clean quantum cosine register is hidden in the count.
 
 ### Complex traces and repetitions
 
-For $0<\epsilon\le1/4$, use $\eta=\epsilon/2$ and perform six independent real-estimator runs, with independent initialized registers and fresh independent seeds: three with $V=U$ and three with $V=-iU$. The latter has real trace equal to the imaginary trace of $U$, and its controlled oracle needs only a known phase on the control in addition to the supplied query. Take a median in each coordinate.
+For $0\lt \epsilon\le1/4$, use $\eta=\epsilon/2$ and perform six independent real-estimator runs, with independent initialized registers and fresh independent seeds: three with $V=U$ and three with $V=-iU$. The latter has real trace equal to the imaginary trace of $U$, and its controlled oracle needs only a known phase on the control in addition to the supplied query. Take a median in each coordinate.
 
 Each median fails with probability at most $5/32$, so both coordinates are correct with probability at least $11/16>2/3$. Their combined error is at most $\sqrt2\eta\le\epsilon$. A strict realization without intermediate resets counts all six sets of registers: $6n$ mixed target qubits and $6(s+r+2)$ clean qubits for a unitary input. External seeds preserve the $O(n)$ mixed-width headline; internal seeds add $O(n\log(1/\epsilon))$ mixed qubits.
 
@@ -400,10 +400,10 @@ The [query lower bound](../science/trace-estimator.md#8-query-lower-bound) shows
 
 **Source connection:** quantum operations, §8.2, p. 356; trace distance, §9.2.1, p. 403. The channel-distance bound below extends the state-distance reasoning to steps acting on possibly entangled circuit registers.
 
-Suppose the desired Hermitian matrix is $A$, but the signal block obeys $\|C-A\|\le\epsilon_{\mathrm{BE}}$. The exact unitary $V$ still produces the exact Hermitian involution above. Its encoded observable is $\widehat A=(C+C^\dagger)/2$, with
+Suppose the desired Hermitian matrix is $A$, but the signal block obeys $\Vert C-A\Vert \le\epsilon_{\mathrm{BE}}$. The exact unitary $V$ still produces the exact Hermitian involution above. Its encoded observable is $\widehat A=(C+C^\dagger)/2$, with
 
 $$
-\|\widehat A-A\|\le\epsilon_{\mathrm{BE}},
+\Vert \widehat A-A\Vert \le\epsilon_{\mathrm{BE}},
 \qquad
 |\tau_n(\widehat A)-\tau_n(A)|\le\epsilon_{\mathrm{BE}}.
 $$
@@ -413,10 +413,10 @@ The estimator can therefore be analyzed directly on $\widehat A$. A fixed block 
 For operational errors, use normalized distances
 
 $$
-D(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1,
+D(\rho,\sigma)=\tfrac12\Vert \rho-\sigma\Vert _1,
 \qquad
 d_\diamond(\mathcal E,\mathcal F)
-=\tfrac12\|\mathcal E-\mathcal F\|_\diamond.
+=\tfrac12\Vert \mathcal E-\mathcal F\Vert _\diamond.
 $$
 
 If the initial **joint** state is within trace distance $\zeta$ of the required product state and step $j$ has channel error at most $\delta_j$, contractivity and a telescoping hybrid give output-distribution distance at most
@@ -440,10 +440,10 @@ If only the target preparation differs and $D(\rho,I/d)\le\zeta_T$, every output
 
 The same mechanism applies to a known unitary computation whose acceptance probability must be distinguished across a small gap. This consequence uses explicit threshold information and a different role for the original clean register.
 
-Let a polynomial-time uniform, polynomial-size unitary circuit $V_x$ act on $k=O(\log m)$ initially clean qubits and $n$ initially mixed qubits, where $m$ is the input length and the total width is polynomially bounded. It measures one designated output qubit at the end, with outcome zero meaning acceptance and acceptance probability $p_x$. Assume supplied or efficiently computable thresholds $0\le s<c\le1$, together with an efficiently known lower bound
+Let a polynomial-time uniform, polynomial-size unitary circuit $V_x$ act on $k=O(\log m)$ initially clean qubits and $n$ initially mixed qubits, where $m$ is the input length and the total width is polynomially bounded. It measures one designated output qubit at the end, with outcome zero meaning acceptance and acceptance probability $p_x$. Assume supplied or efficiently computable thresholds $0\le s\lt c\le1$, together with an efficiently known lower bound
 
 $$
-c-s\ge\Delta\ge1/\operatorname{poly}(m).
+c-s\ge\Delta\ge1/\mathrm{poly}(m).
 $$
 
 Yes-instances obey $p_x\ge c$ and no-instances obey $p_x\le s$. The threshold data must be computable to the accuracy used by the circuit generator; a promise that some separating threshold exists is not enough.
@@ -461,7 +461,7 @@ $$
 \tau_n(A_x)=2p_x-1.
 $$
 
-The original $k$ pure input qubits serve as the signal register; the $n$ mixed target qubits stay unpurified. The additional Hermitianization bit is unnecessary. Controlled-$H_x$ is implemented by an unconditional $V_x$, controlled-$Z_o$, and unconditional $V_x^\dagger$. The inverse is available by reversing a known circuit and inverting its gates, rather than by assuming that an unknown forward-only channel can be inverted.
+The original $k$ pure input qubits serve as the signal register; the $n$ mixed target qubits stay unpurified. The additional Hermitianization bit is unnecessary. Controlled $H_x$ is implemented by an unconditional $V_x$, controlled $Z_o$, and unconditional $V_x^\dagger$. The inverse is available by reversing a known circuit and inverting its gates, rather than by assuming that an unknown forward-only channel can be inverted.
 
 Use estimator precision $\eta=\Delta/8$ and let $s_{\mathrm P}=\lceil\log_2(64/\eta^2)\rceil$ denote the number of Pauli generators, to distinguish it from the soundness threshold $s$. The separating trace threshold is $\theta=c+s-1$, and the promised traces lie at least $\Delta$ on the appropriate side. The coherent phase result can be compared to this threshold without computing a real cosine in a quantum register. The circuit generator chooses an integer $K$ so that
 
@@ -472,7 +472,7 @@ $$
 Two reversible comparisons then compute
 
 $$
-f_K(y)=\mathbf 1\{y\le K\text{ or }y\ge M-K\}
+f_K(y)=\mathbf 1\lbrace y\le K\text{ or }y\ge M-K\rbrace 
 $$
 
 into one output bit. Retaining the clock and uncomputing the comparator's work permits a single terminal output measurement. The exact rounding rule and margin are in [the output comparison](../science/few-clean-amplification.md#5-one-reversible-output-comparison).

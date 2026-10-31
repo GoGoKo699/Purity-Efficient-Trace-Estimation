@@ -55,7 +55,7 @@ The **12/18 allocation** reflects this project's structure. Its prerequisites co
 
 **Central question:** When does an observable's expectation equal the average of all its eigenvalues?
 
-**Understanding target:** Connect measurement probabilities to $\operatorname{Tr}(\rho A)$ and recognize $\tau_n(A)=2^{-n}\operatorname{Tr}(A)$ as the expectation in $I/2^n$. Eigenvalues contribute according to their multiplicities; a single spectral outcome need not be close to this average.
+**Understanding target:** Connect measurement probabilities to $\mathrm{Tr}(\rho A)$ and recognize $\tau_n(A)=2^{-n}\mathrm{Tr}(A)$ as the expectation in $I/2^n$. Eigenvalues contribute according to their multiplicities; a single spectral outcome need not be close to this average.
 
 **Dependencies and story role:** Uses M02–M03. It connects the physical measurement setting to the numerical task.
 
@@ -189,7 +189,7 @@ The **12/18 allocation** reflects this project's structure. Its prerequisites co
 
 **Central question:** Why is normalized spectral variance the right concentration measure?
 
-**Understanding target:** Connect the exact factor-$2^{-s}$ contraction of normalized Hilbert–Schmidt variance, in expectation over the seed, to the probability that a uniformly sampled eigenvalue lies near the trace. Distinguish this seed-and-sample guarantee from an operator-norm bound or a guarantee for every seed.
+**Understanding target:** Connect the exact factor $2^{-s}$ contraction of normalized Hilbert–Schmidt variance, in expectation over the seed, to the probability that a uniformly sampled eigenvalue lies near the trace. Distinguish this seed-and-sample guarantee from an operator-norm bound or a guarantee for every seed.
 
 **Dependencies and story role:** Uses M09 and M14. This identifies the statistical property that the circuit must exploit.
 
@@ -201,7 +201,7 @@ The **12/18 allocation** reflects this project's structure. Its prerequisites co
 
 **Central question:** How can the real part of a signal block be placed inside an exact reflection-like unitary?
 
-**Understanding target:** Explain how the two off-diagonal blocks $V$ and $V^\dagger$ form a Hermitian involution and why compression onto the extra $|+\rangle$ qubit produces $\operatorname{Re}C$. The original signal bits remain counted.
+**Understanding target:** Explain how the two off-diagonal blocks $V$ and $V^\dagger$ form a Hermitian involution and why compression onto the extra $|+\rangle$ qubit produces $\mathrm{Re}C$. The original signal bits remain counted.
 
 **Dependencies and story role:** Uses M02, M06, and M12. It prepares the oracle for the spectral construction without assuming that the supplied unitary is Hermitian.
 
