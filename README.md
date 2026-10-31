@@ -48,6 +48,12 @@ python3 verification/checks.py
 
 The finite checks test signs, normalizations, phase handling, and spectral sampling. The asymptotic guarantees follow from the analytic proofs.
 
+## Learning route
+
+The single educational anchor is **Nielsen–Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010)**. The [anchor map](learning/anchor.md) identifies the relevant sections and notation; the [source-to-project bridge](learning/bridge.md) develops the additional ideas and a worked example.
+
+The [30-milestone map](learning/milestones.md) has 12 background/preliminaries targets followed by 18 narrative/innovation targets. It follows the scientific dependencies from states and circuits to the complete purity/query theorem and its scope. Start at the [learning overview](learning/README.md), or use [llms.txt](llms.txt) to locate a specific question's authoritative source.
+
 ## Purpose and contact
 
 This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
