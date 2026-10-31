@@ -1,0 +1,50 @@
+# Purity-Efficient Trace Estimation
+
+This repository develops normalized trace estimation with inverse-linear additive-precision query cost and logarithmic initially clean workspace. The target is initialized maximally mixed without access to a purification. The scientific account includes explicit oracle access, mixed and clean widths, randomness, confidence, known-gate costs, robustness, and a known-gap no-reset amplification consequence.
+
+## Entry routes
+
+- Scientific overview and resource table: README.md
+- Connected proof account: science/README.md
+- Shared learning route: learning/README.md
+- Selected educational anchor and notation: learning/anchor.md
+- Source-to-project explanation and worked example: learning/bridge.md
+- Exactly 30 common understanding targets: learning/milestones.md
+- Primary-source comparison: references/related-work.md
+- Structured bibliography: references/references.bib
+- Reproduction and finite-check limits: verification/README.md
+
+## Questions and authoritative homes
+
+- What is the initial state, and what counts as a query or clean qubit? science/model.md
+- How does random Pauli averaging contract normalized spectral variance? science/pauli-averaging.md
+- How can an exponential branch average have a polynomial-size SELECT circuit? science/pauli-averaging.md
+- Why do Pauli branch phases cancel, and why is the actual adjoint necessary? science/pauli-averaging.md
+- Why does phase estimation with a mixed target sample the required eigenvalues? science/trace-estimator.md
+- What are the exact success constants, query counts, and clean/mixed resource ledgers? science/trace-estimator.md
+- How are complex output and high confidence handled without intermediate resets? science/trace-estimator.md
+- Which error is fixed signal bias, and which execution errors accumulate? science/robustness.md
+- Why does the general trace task require a controlled-channel phase convention? science/model.md and science/robustness.md
+- How does a known inverse-polynomial acceptance gap become constant using logarithmic clean width? science/few-clean-amplification.md
+- What threshold uniformity is assumed, and what happens to query cost under the inherited one/two-clean compiler? science/few-clean-amplification.md
+- What is inherited from earlier trace estimators, quantum expanders, and few-clean computation? references/related-work.md
+- How can the finite diagnostic results be reproduced? verification/checks.py, verification/requirements.txt, and verification/results.json
+
+## Reading conventions
+
+The sole educational anchor is Nielsen and Chuang, Quantum Computation and Quantum Information, 10th Anniversary Edition (2010). The anchor map identifies relevant sections and distinguishes textbook foundations from derivations supplied here and primary research dependencies.
+
+The learning map is project-defined and reader-independent. It has 12 background/preliminaries milestones followed by 18 narrative/innovation milestones. Its source pointers lead to the authoritative proofs; the bridge does not supersede them.
+
+## Scientific distinctions to preserve
+
+- Maximal mixing is an initialization condition; subsystem states may change during the circuit.
+- The general trace estimator assumes controlled forward and inverse unitaries with fixed relative phases.
+- Any pure workspace needed inside the supplied oracle implementation is charged.
+- The spectral concentration guarantee is joint over the seed and the uniformly sampled eigenvector; it is not an every-seed operator-norm guarantee.
+- Classical seeds and internal mixed seed registers have different mixed-space ledgers.
+- Strict repetitions count all initially supplied copies. Hardware reuse between reinitialized experiments is a separate convention.
+- Fixed encoding bias is distinct from per-use implementation error.
+- The inverse-linear precision lower bound is a query bound. Initial-purity optimality is not established.
+- The amplification consequence assumes effective thresholds and a known gap lower bound. The final one/two-clean compiler has its own polynomial overhead.
+- Finite numerical diagnostics do not prove the asymptotic theorem or exhaustive historical priority.

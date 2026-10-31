@@ -9,12 +9,12 @@ The averaging construction is proved in [Pauli averaging](pauli-averaging.md). I
 Let $\mathcal H_S=(\mathbb C^2)^{\otimes n}$ and $d=2^n$. For an operator on $S$, write
 
 $$
-\tau_n(A)=\frac{\operatorname{Tr}(A)}{2^n},
+\tau_n(A)=\frac{\mathrm{Tr}(A)}{2^n},
 \qquad
-\|A\|_{2,\tau}^2=\tau_n(A^\dagger A).
+\Vert A\Vert _{2,\tau}^2=\tau_n(A^\dagger A).
 $$
 
-The norm $\|A\|$ without a subscript is the operator norm. A Hermitian contraction satisfies $A=A^\dagger$ and $\|A\|\leq 1$.
+The norm $\Vert A\Vert$ without a subscript is the operator norm. A Hermitian contraction satisfies $A=A^\dagger$ and $\Vert A\Vert \leq 1$.
 
 A **clean qubit** is initialized in $|0\rangle$. A register of **maximally mixed qubits** is initialized in the identity state divided by its dimension. All initially supplied registers are independent. A run with $q$ clean qubits and an $n$-qubit target begins in
 
@@ -38,13 +38,13 @@ $$
 C=(\langle0^a|_E\otimes I_S)V(|0^a\rangle_E\otimes I_S).
 $$
 
-Consequently $\|C\|\leq 1$. The real estimator applies to the Hermitian contraction
+Consequently $\Vert C\Vert \leq 1$. The real estimator applies to the Hermitian contraction
 
 $$
-A=\operatorname{Re} C=\frac{C+C^\dagger}{2}.
+A=\mathrm{Re} C=\frac{C+C^\dagger}{2}.
 $$
 
-For an exact block encoding of a Hermitian contraction, $C=A$. For the unitary trace task, $a=0$, $V=U$, and the desired real quantity is $\tau_n(\operatorname{Re}U)=\operatorname{Re}\tau_n(U)$. Applying the same algorithm to $-iV$ gives $\operatorname{Im}\tau_n(C)$.
+For an exact block encoding of a Hermitian contraction, $C=A$. For the unitary trace task, $a=0$, $V=U$, and the desired real quantity is $\tau_n(\mathrm{Re}U)=\mathrm{Re}\tau_n(U)$. Applying the same algorithm to $-iV$ gives $\mathrm{Im}\tau_n(C)$.
 
 The supplied query gates are
 
@@ -64,18 +64,18 @@ Any clean workspace required *inside* an implementation of $V$ or its controlled
 For a Hermitian target operator $H$, suppose $V$ is an $(\alpha,a,\epsilon_{\mathrm{BE}})$ block encoding in the convention
 
 $$
-\|H-\alpha C\|\leq\epsilon_{\mathrm{BE}},
+\Vert H-\alpha C\Vert \leq\epsilon_{\mathrm{BE}},
 \qquad \alpha>0.
 $$
 
 Hermitianization is contractive in operator norm, so
 
 $$
-\|H-\alpha\operatorname{Re}C\|
+\Vert H-\alpha\mathrm{Re}C\Vert 
 \leq\epsilon_{\mathrm{BE}}.
 $$
 
-Estimating $\tau_n(\operatorname{Re}C)$ to accuracy $\eta$ and multiplying by $\alpha$ therefore gives an estimate of $\tau_n(H)$ with error at most
+Estimating $\tau_n(\mathrm{Re}C)$ to accuracy $\eta$ and multiplying by $\alpha$ therefore gives an estimate of $\tau_n(H)$ with error at most
 
 $$
 \alpha\eta+\epsilon_{\mathrm{BE}}.
@@ -88,7 +88,7 @@ This is a fixed input bias. It does not accumulate once per use of the same exac
 The input operator is fixed before the random seed is drawn. For a given integer $s$, the algorithm chooses independent uniformly random Hermitian Pauli strings
 
 $$
-G_1,\ldots,G_s\in\{I,X,Y,Z\}^{\otimes n}.
+G_1,\ldots,G_s\in\lbrace I,X,Y,Z\rbrace ^{\otimes n}.
 $$
 
 The seed uses $2ns$ classical random bits. It can be sampled and translated into the known part of the circuit in time $O(ns)$. There is no list of all $2^s$ Pauli products, no quantum random-access memory assumption, and no arbitrary state-loading operation.
@@ -97,8 +97,8 @@ The probability statement has the form
 
 $$
 \text{for every fixed admissible }V,\qquad
-\Pr_{G,\,\mathrm{measurement}}
-\bigl[|\widehat t-\operatorname{Re}\tau_n(C)|\leq\eta\bigr]
+\Pr_{G, \mathrm{measurement}}
+\bigl[|\widehat t-\mathrm{Re}\tau_n(C)|\leq\eta\bigr]
 \geq p_0.
 $$
 
@@ -122,6 +122,6 @@ If implementing one supplied controlled oracle costs $g_V$ native gates, the phy
 
 ## 5. Output convention and scope
 
-A phase-estimation outcome $y\in\{0,\ldots,M-1\}$ represents the real number $\cos(2\pi y/M)$. The pair $(y,M)$ is a finite exact description of that number. Numerical evaluation to additional accuracy $\eta_{\mathrm{out}}$ adds at most $\eta_{\mathrm{out}}$ to the stated error and can be performed classically with polynomial cost in $\log M$ and $\log(1/\eta_{\mathrm{out}})$. No pure quantum arithmetic register is needed when the desired output is a classical estimate.
+A phase-estimation outcome $y\in\lbrace 0,\ldots,M-1\rbrace$ represents the real number $\cos(2\pi y/M)$. The pair $(y,M)$ is a finite exact description of that number. Numerical evaluation to additional accuracy $\eta_{\mathrm{out}}$ adds at most $\eta_{\mathrm{out}}$ to the stated error and can be performed classically with polynomial cost in $\log M$ and $\log(1/\eta_{\mathrm{out}})$. No pure quantum arithmetic register is needed when the desired output is a classical estimate.
 
 The main result is a clean-qubit **upper bound** together with optimal dependence of the query count on additive precision. The scalar-phase lower bound in [Trace estimator](trace-estimator.md#8-query-lower-bound) proves only a query lower bound. It places no nontrivial lower bound on the number of clean qubits.

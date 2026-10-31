@@ -5,7 +5,7 @@ The central question is whether normalized trace estimation can attain inverse-l
 For an $n$-qubit unitary $U$, the output approximates
 
 $$
-\tau_n(U)=2^{-n}\operatorname{Tr}(U)
+\tau_n(U)=2^{-n}\mathrm{Tr}(U)
 $$
 
 to additive error $\epsilon$ with constant success probability. The query cost is $O(1/\epsilon)$, the initial clean width is $O(\log(1/\epsilon))$, and the strict constant-confidence complex estimator uses $O(n)$ mixed target qubits. The result assumes supplied controlled $U$ and controlled $U^\dagger$ gates. Their implementation cost is additional to the explicitly counted known gates.
@@ -19,13 +19,13 @@ Let $A$ be a Hermitian contraction, $t=\tau_n(A)$, and let $G_1,\ldots,G_s$ be i
 $$
 P_z=G_s^{z_s}\cdots G_1^{z_1},
 \qquad
-B_G=2^{-s}\sum_{z\in\{0,1\}^s}P_z^\dagger A P_z,
+B_G=2^{-s}\sum_{z\in\lbrace 0,1\rbrace ^s}P_z^\dagger A P_z,
 $$
 
 the exact identity is
 
 $$
-\mathbb E_G\,\tau_n\!\left[(B_G-tI)^2\right]
+\mathbb E_G \tau_n \left[(B_G-tI)^2\right]
 =2^{-s}\bigl(\tau_n(A^2)-t^2\bigr).
 $$
 
@@ -47,7 +47,7 @@ V&0
 \end{pmatrix}.
 $$
 
-Compressing its extra qubit onto $|+\rangle$ and the original signal register onto $|0^a\rangle$ gives $\operatorname{Re}C$. A Hadamard on the extra qubit converts this to the all-zero signal convention. The averaged involution $W_G$ has signal block $B_G$. Reflecting about the clean signal subspace gives a walk
+Compressing its extra qubit onto $|+\rangle$ and the original signal register onto $|0^a\rangle$ gives $\mathrm{Re}C$. A Hadamard on the extra qubit converts this to the all-zero signal convention. The averaged involution $W_G$ has signal block $B_G$. Reflecting about the clean signal subspace gives a walk
 
 $$
 Q=(2\Pi-I)W_G.

@@ -6,7 +6,7 @@ All statements use the controlled-oracle, initialization, and elementary-gate co
 
 ## 1. Real estimator theorem
 
-Let $V$ be a unitary on $a+n$ qubits, with all-zero $a$-qubit signal block $C$. Let $A=\operatorname{Re}C$, $t=\tau_n(A)$, and $0<\eta\leq1/4$. Define
+Let $V$ be a unitary on $a+n$ qubits, with all-zero $a$-qubit signal block $C$. Let $A=\mathrm{Re}C$, $t=\tau_n(A)$, and $0\lt \eta\leq1/4$. Define
 
 $$
 s=\left\lceil\log_2\frac{64}{\eta^2}\right\rceil,
@@ -39,22 +39,24 @@ The output is represented exactly by a phase outcome $y$ and the formula $\wideh
 
 1. Draw $s$ independent uniform Pauli generators and form the known SELECT circuit described in [Pauli averaging](pauli-averaging.md#4-coherent-averaging-circuit).
 2. Initialize the $b$ signal qubits, an $r$-qubit phase register, and one temporary control qubit to zero. Initialize the target to $I/2^n$.
-3. Form the Hermitian involution $W_G$ with signal block $B_G$. With $\mathcal J|\psi\rangle=|0^b\rangle|\psi\rangle$, define
-
-   $$
-   \Pi=\mathcal J\mathcal J^\dagger,
-   \qquad R=2\Pi-I,
-   \qquad Q=R W_G.
-   $$
+3. Form the Hermitian involution $W_G$ with signal block $B_G$ and the walk $Q=RW_G$. The signal embedding and reflection are defined below.
 
 4. Apply standard $M$-point phase estimation of $Q$: Hadamards on the phase register, powers $Q^{2^j}$ controlled by its individual bits, and the inverse Fourier transform. Each power is implemented by repeated controlled walk steps.
-5. Measure the phase register, obtaining $y\in\{0,\ldots,M-1\}$, and return $\cos(2\pi y/M)$.
+5. Measure the phase register, obtaining $y\in\lbrace 0,\ldots,M-1\rbrace$, and return $\cos(2\pi y/M)$.
+
+Here the embedding $\mathcal J|\psi\rangle=|0^b\rangle|\psi\rangle$ defines
+
+$$
+\Pi=\mathcal J\mathcal J^\dagger,
+\qquad R=2\Pi-I,
+\qquad Q=R W_G.
+$$
 
 No measurement is made to determine an eigenstate or to project the signal register. In particular, the algorithm does not postselect the all-zero signal subspace after the walk.
 
 ## 3. Mixed-state spectral sampling
 
-**Lemma (mixed-state spectral sampling).** Fix a seed $G$. Let $B_G|v_j\rangle=\lambda_j|v_j\rangle$ be an orthonormal eigenbasis, with eigenvalues listed with multiplicity. On initial state $\mathcal J(I/d)\mathcal J^\dagger$, phase estimation of $Q=RW_G$ has the distribution obtained by choosing $j$ uniformly and applying phase estimation to eigenphase $+\arccos\lambda_j$ or $-\arccos\lambda_j$, with equal probabilities when $|\lambda_j|<1$. At $\lambda_j=\pm1$, the two phases coincide modulo $2\pi$. Both phase choices have cosine $\lambda_j$.
+**Lemma (mixed-state spectral sampling).** Fix a seed $G$. Let $B_G|v_j\rangle=\lambda_j|v_j\rangle$ be an orthonormal eigenbasis, with eigenvalues listed with multiplicity. On initial state $\mathcal J(I/d)\mathcal J^\dagger$, phase estimation of $Q=RW_G$ has the distribution obtained by choosing $j$ uniformly and applying phase estimation to eigenphase $+\arccos\lambda_j$ or $-\arccos\lambda_j$, with equal probabilities when $|\lambda_j|\lt 1$. At $\lambda_j=\pm1$, the two phases coincide modulo $2\pi$. Both phase choices have cosine $\lambda_j$.
 
 **Proof.** Put $|\psi_j\rangle=\mathcal J|v_j\rangle$. Because $\mathcal J^\dagger W_G\mathcal J=B_G$,
 
@@ -62,7 +64,7 @@ $$
 \Pi W_G|\psi_j\rangle=\lambda_j|\psi_j\rangle.
 $$
 
-For $|\lambda_j|<1$, define
+For $|\lambda_j|\lt 1$, define
 
 $$
 |\phi_j\rangle=
@@ -106,18 +108,18 @@ By the averaging identity and the preceding lemma,
 
 $$
 \Pr_{G,j}\left[|\lambda_j-t|>\frac\eta2\right]
-\leq\frac{4\,2^{-s}}{\eta^2}
+\leq\frac{4 2^{-s}}{\eta^2}
 \leq\frac1{16}.
 $$
 
 For any fixed eigenphase $\theta$, standard $M$-point phase estimation returns $y$ satisfying
 
 $$
-\operatorname{dist}_{2\pi}\left(\frac{2\pi y}{M},\theta\right)
+\mathrm{dist}_{2\pi}\left(\frac{2\pi y}{M},\theta\right)
 \leq\frac{2\pi}{M}
 $$
 
-with probability at least $8/\pi^2$. Here $\operatorname{dist}_{2\pi}$ is the shortest circular distance. The bound includes exact grid phases, for which the phase is recovered with probability one. This is [Brassard et al., *Quantum Amplitude Amplification and Estimation*, Theorem 11](https://arxiv.org/abs/quant-ph/0005055).
+with probability at least $8/\pi^2$. Here $\mathrm{dist}_{2\pi}$ is the shortest circular distance. The bound includes exact grid phases, for which the phase is recovered with probability one. This is [Brassard et al., *Quantum Amplitude Amplification and Estimation*, Theorem 11](https://arxiv.org/abs/quant-ph/0005055).
 
 For completeness, the phase-register amplitude at $y$ is
 
@@ -154,7 +156,7 @@ $$
 controlled walk steps. A controlled $W_G$ uses one supplied controlled $V$ and one supplied controlled $V^\dagger$, by [the explicit control construction](pauli-averaging.md#5-controlling-the-walk-without-a-stronger-oracle). The reflection uses no oracle call. This gives exactly $M-1$ calls of each type, or $2(M-1)$ total. Since
 
 $$
-\frac{4\pi}{\eta}\leq M<\frac{8\pi}{\eta},
+\frac{4\pi}{\eta}\leq M\lt \frac{8\pi}{\eta},
 $$
 
 the total is less than $16\pi/\eta$.
@@ -201,7 +203,7 @@ An implementation that does not reuse the temporary bit for the reflection can u
 
 ## 6. Complex trace theorem and higher confidence
 
-**Theorem (complex trace).** Let $0<\epsilon\leq1/4$. For a supplied unitary $U$ on $n$ qubits, controlled $U$ and controlled $U^\dagger$ access suffices to output $\widehat z$ such that
+**Theorem (complex trace).** Let $0\lt \epsilon\leq1/4$. For a supplied unitary $U$ on $n$ qubits, controlled $U$ and controlled $U^\dagger$ access suffices to output $\widehat z$ such that
 
 $$
 \Pr\bigl[|\widehat z-\tau_n(U)|\leq\epsilon\bigr]
@@ -223,11 +225,11 @@ The union bound over the coordinates gives success at least $1-10/32=11/16$. On 
 
 For these six runs, the exact total query count is $12(M-1)$, where $M$ is defined using $\eta=\epsilon/2$. A direct strict realization uses six disjoint target registers and six sets of clean registers: $6n$ mixed target qubits and $6(a+s+r+2)$ clean qubits, with $a=0$ for $U$. Each run's measurements can be postponed until every run has finished. The same argument estimates the normalized trace of a general signal block $C$, with its $a$ signal qubits included in each copy.
 
-The finite phase outcomes are exact descriptions of the coordinate estimates. If numerical coordinates are desired, rounding each final coordinate within $\epsilon/8$ still gives total error at most $5\sqrt2\epsilon/8<\epsilon$ on the same success event.
+The finite phase outcomes are exact descriptions of the coordinate estimates. If numerical coordinates are desired, rounding each final coordinate within $\epsilon/8$ still gives total error at most $5\sqrt2\epsilon/8\lt \epsilon$ on the same success event.
 
 ### Failure probability $\delta$
 
-For $0<\delta<1/2$, use an odd number $R_{\mathrm{rep}}\geq8\ln(2/\delta)$ of independent real runs in each coordinate. A Hoeffding bound gives coordinate-median failure probability at most $e^{-R_{\mathrm{rep}}/8}\leq\delta/2$. The query count is then
+For $0\lt \delta\lt 1/2$, use an odd number $R_{\mathrm{rep}}\geq8\ln(2/\delta)$ of independent real runs in each coordinate. A Hoeffding bound gives coordinate-median failure probability at most $e^{-R_{\mathrm{rep}}/8}\leq\delta/2$. The query count is then
 
 $$
 O\left(\frac{\log(1/\delta)}{\epsilon}\right).
@@ -250,7 +252,7 @@ For example, if $\epsilon_{\mathrm{BE}}\leq\epsilon/2$ and $\eta=\epsilon/(2\alp
 
 ## 8. Query lower bound
 
-**Proposition (ordinary precision lower bound).** For $0<\epsilon\leq1/4$, any algorithm that estimates $\operatorname{Re}\tau_n(U)$ to additive error $\epsilon$ with probability at least $2/3$ for every unitary $U$ requires at least $1/(12\epsilon)$ controlled forward or inverse queries in the worst case. The algorithm may have arbitrarily many clean qubits. Thus this is a query lower bound, not a purity lower bound.
+**Proposition (ordinary precision lower bound).** For $0\lt \epsilon\leq1/4$, any algorithm that estimates $\mathrm{Re}\tau_n(U)$ to additive error $\epsilon$ with probability at least $2/3$ for every unitary $U$ requires at least $1/(12\epsilon)$ controlled forward or inverse queries in the worst case. The algorithm may have arbitrarily many clean qubits. Thus this is a query lower bound, not a purity lower bound.
 
 **Proof.** Consider the two scalar unitaries
 
@@ -260,7 +262,7 @@ U_0=iI,
 U_1=e^{i(\pi/2+4\epsilon)}I.
 $$
 
-Their real normalized traces are $0$ and $-\sin(4\epsilon)$. Since $4\epsilon\leq1<\pi/2$,
+Their real normalized traces are $0$ and $-\sin(4\epsilon)$. Since $4\epsilon\leq1\lt \pi/2$,
 
 $$
 \sin(4\epsilon)\geq\frac{8\epsilon}{\pi}>2\epsilon.
