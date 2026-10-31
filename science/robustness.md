@@ -55,7 +55,11 @@ To implement (2), introduce a signal qubit $b$ and form
 **Equation (4).**
 
 $$
-F_V=\begin{pmatrix}0&V^\dagger\\ V&0\end{pmatrix}.
+F_V=
+\begin{pmatrix}
+0&V^\dagger\\
+V&0
+\end{pmatrix}.
 $$
 
 This is an exact Hermitian involution for every unitary $V$. Its compression onto $|+\rangle_b|0^a\rangle$ is $\widehat A$. Conjugating by a Hadamard on $b$ changes this to an all-zero signal convention. Therefore the exact Pauli-averaging and mixed-state spectral-sampling proofs apply to $\widehat A$, even if $C$ is not Hermitian.
